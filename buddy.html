@@ -1,90 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Buddy Support Bot | InfinAI</title>
-
-<link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buddy Support Bot | InfinAI</title>
+  <meta name="description" content="Buddy Support Bot helps businesses and online communities manage support conversations inside Telegram." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="InfinAI home">
+          <img src="assets/Infin_AI_Purple.png" alt="InfinAI logo" class="brand-logo" />
+        </a>
 
-<header class="navbar">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
 
-<div class="nav-container">
+        <nav class="site-nav" id="siteNav">
+          <a href="index.html">Home</a>
+          <a href="buddy.html">Buddy</a>
+          <a href="mailto:support@infinai.uk">Contact</a>
+          <a href="#" class="button button-small js-demo-link">Try Buddy</a>
+        </nav>
+      </div>
+    </header>
 
-<img src="assets/infin_ai_logo.png" class="logo">
+    <main>
+      <section class="page-hero page-hero-buddy">
+        <div class="container page-hero-grid">
+          <div>
+            <div class="eyebrow">Buddy by InfinAI</div>
+            <h1>Support automation for Telegram communities</h1>
+            <p class="hero-subtitle">
+              Buddy Support Bot helps teams handle common support questions, guide users through routine issues, and escalate complex cases when needed.
+            </p>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="mailto:support@infinai.uk">Contact</a>
-</nav>
+            <div class="hero-actions">
+              <a href="#" class="button button-primary js-demo-link">Try Buddy Support Bot</a>
+              <a href="mailto:support@infinai.uk" class="button button-secondary">Contact InfinAI</a>
+            </div>
+          </div>
 
-</div>
+          <div class="journey-card">
+            <div class="mini-label">Guided support journey</div>
+            <div class="journey-step"><span>1</span>User selects a support scenario</div>
+            <div class="journey-step"><span>2</span>Buddy asks targeted follow-up questions</div>
+            <div class="journey-step"><span>3</span>Buddy provides guided troubleshooting</div>
+            <div class="journey-step"><span>4</span>If unresolved, Buddy escalates to a human</div>
+          </div>
+        </div>
+      </section>
 
-</header>
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">What Buddy does</div>
+            <h2>Designed to handle the questions your team sees every day</h2>
+            <p>
+              Buddy supports Telegram-based support workflows by taking care of repetitive conversations that would otherwise consume time and delay responses.
+            </p>
+          </div>
 
+          <div class="card-grid three-up">
+            <article class="feature-card">
+              <h3>Instant responses</h3>
+              <p>Answers common support questions as soon as they arrive, helping users get support without waiting for an admin to respond.</p>
+            </article>
 
-<section class="hero">
+            <article class="feature-card">
+              <h3>Guided troubleshooting</h3>
+              <p>Walks users through clear steps for issues like login problems, access requests, connection errors, and account questions.</p>
+            </article>
 
-<h1>Buddy Support Bot</h1>
+            <article class="feature-card">
+              <h3>Human escalation</h3>
+              <p>When a case is unusual, unresolved, or sensitive, Buddy passes it to your team instead of forcing a weak automated response.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<p class="subtitle">
-AI automation for Telegram support conversations.
-</p>
+      <section class="section section-tint">
+        <div class="container split-panel">
+          <div>
+            <div class="eyebrow">How it works</div>
+            <h2>A cleaner support flow inside Telegram</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h3>User sends a message</h3>
+                <p>Support requests come in through Telegram as they normally would.</p>
+              </div>
+              <div class="timeline-item">
+                <h3>Buddy identifies the issue</h3>
+                <p>Common request types are recognised and routed into a guided response path.</p>
+              </div>
+              <div class="timeline-item">
+                <h3>Buddy helps resolve the issue</h3>
+                <p>Users receive clear next steps or direct answers for repetitive support questions.</p>
+              </div>
+              <div class="timeline-item">
+                <h3>Your team handles the edge cases</h3>
+                <p>Complex, unresolved, or sensitive issues are escalated to a human when needed.</p>
+              </div>
+            </div>
+          </div>
 
-<a class="cta" href="#">Try Buddy Demo</a>
+          <aside class="scenario-card">
+            <div class="mini-label">Demo scenarios</div>
+            <h3>What visitors can try</h3>
+            <ul class="plain-list">
+              <li>Login issue</li>
+              <li>Account problem</li>
+              <li>Connection issue</li>
+              <li>Speak to a human</li>
+            </ul>
 
-</section>
+            <p class="compact">
+              The guided demo is designed to show how Buddy leads users through a support journey rather than simply answering one-off questions.
+            </p>
 
+            <a href="#" class="button button-primary js-demo-link">Open Telegram demo</a>
+          </aside>
+        </div>
+      </section>
 
-<section class="section">
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">Benefits</div>
+            <h2>What Buddy helps you improve</h2>
+            <p>
+              Buddy is built for businesses and online communities that want a more scalable way to handle support inside Telegram.
+            </p>
+          </div>
 
-<h2>What Buddy Does</h2>
+          <div class="card-grid two-up">
+            <article class="benefit-card">
+              <h3>Reduce repetitive support workload</h3>
+              <p>Free up admins and support teams from answering the same questions over and over again.</p>
+            </article>
 
-<ul>
+            <article class="benefit-card">
+              <h3>Improve response speed</h3>
+              <p>Give users immediate help for common issues instead of leaving them waiting in a busy group or support channel.</p>
+            </article>
 
-<li>Answers common support questions instantly</li>
-<li>Guides users through troubleshooting steps</li>
-<li>Escalates complex issues to human support</li>
-<li>Maintains conversation context</li>
-<li>Provides 24/7 support availability</li>
+            <article class="benefit-card">
+              <h3>Keep support quality consistent</h3>
+              <p>Deliver the same structured response flow across repeated support scenarios.</p>
+            </article>
 
-</ul>
+            <article class="benefit-card">
+              <h3>Scale without adding friction</h3>
+              <p>Handle more incoming support volume without defaulting to more manual work.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-</section>
+      <section class="section cta-section">
+        <div class="container cta-panel">
+          <div>
+            <div class="eyebrow">Try the live experience</div>
+            <h2>See how Buddy handles common support scenarios</h2>
+            <p>Open the guided Telegram demo to experience Buddy as an end user would.</p>
+          </div>
 
+          <div class="cta-actions">
+            <a href="#" class="button button-primary button-large js-demo-link">Try Buddy Support Bot</a>
+            <a href="mailto:support@infinai.uk" class="button button-ghost button-large">Email InfinAI</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<section class="section">
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <img src="assets/Infin_AI_Purple.png" alt="InfinAI logo" class="footer-logo" />
+          <p class="footer-copy">
+            Buddy is part of the InfinAI product family, designed to make AI genuinely useful in day-to-day business operations.
+          </p>
+        </div>
 
-<h2>How It Works</h2>
+        <div>
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="buddy.html">Buddy</a>
+        </div>
 
-<p>
-Users message your Telegram support channel as usual.
-</p>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:support@infinai.uk">support@infinai.uk</a>
+          <p>United Kingdom</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-<p>
-Buddy recognises common issues and responds with helpful guidance. If a problem cannot be
-resolved automatically, the issue is escalated to a human team member.
-</p>
-
-</section>
-
-
-<footer>
-
-<p>support@infinai.uk</p>
-
-</footer>
-
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
