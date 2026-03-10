@@ -75,7 +75,7 @@ a {
 }
 
 .nav-wrap {
-  min-height: 84px;
+  min-height: 132px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,8 +83,9 @@ a {
 }
 
 .brand-logo {
-  height: 48px;
+  height: 96px;
   width: auto;
+  flex-shrink: 0;
 }
 
 .site-nav {
@@ -640,7 +641,7 @@ p {
 }
 
 .footer-logo {
-  height: 60px;
+  height: 84px;
   width: auto;
   margin-bottom: 18px;
 }
@@ -728,9 +729,6 @@ p {
     padding: 10px 8px;
   }
 
-  .brand-logo {
-    height: 42px;
-  }
 
   .section {
     padding: 82px 0;
@@ -784,42 +782,54 @@ p {
  .brand{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:18px;
  }
 
  .brand img{
    height:72px;
  }
 
- .brand-text{
-   font-size:28px;
-   font-weight:700;
-   color:#1B357A;
+ .brand-text {
+   font-size: 42px;
+   font-weight: 700;
+   line-height: 1;
+   color: #1B357A;
  }
 
 /*metrics*/
 
-  .metrics{
-    display:flex;
-    justify-content:center;
-    gap:60px;
-    padding:60px 20px;
-    background:#f6f9ff;
-  }
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  padding: 56px 40px;
+  background: linear-gradient(180deg, rgba(16,118,203,0.04) 0%, rgba(105,48,211,0.03) 100%);
+  border-top: 1px solid rgba(27, 53, 122, 0.08);
+  border-bottom: 1px solid rgba(27, 53, 122, 0.08);
+}
 
-  .metric{
-    text-align:center;
-    max-width:220px;
-  }
+.metric {
+  text-align: center;
+  padding: 22px 18px;
+}
 
-  .metric h2{
-    font-size:40px;
-    color:#6930D3;
-    margin-bottom:10px;
-  }
+.metric h2 {
+  margin: 0 0 12px;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1;
+  color: #1B357A;
+}
 
-  .metric p{
-    font-size:16px;
-    color:#4d5f8f;
+.metric p {
+  margin: 0 auto;
+  max-width: 26ch;
+  font-size: 1rem;
+  color: #4d5f8f;
+}
+
+@media (max-width: 860px) {
+  .metrics {
+    grid-template-columns: 1fr;
+    padding: 36px 20px;
   }
 }
