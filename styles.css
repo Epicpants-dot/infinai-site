@@ -83,7 +83,7 @@ a {
 }
 
 .brand-logo {
-  height: 96px;
+  height: 140px;
   width: auto;
   flex-shrink: 0;
 }
@@ -641,7 +641,7 @@ p {
 }
 
 .footer-logo {
-  height: 84px;
+  height: 110px;
   width: auto;
   margin-bottom: 18px;
 }
@@ -776,33 +776,36 @@ p {
   .message {
     max-width: 92%;
   }
+}
 
 /* Brand */
 
- .brand{
-  display:flex;
-  align-items:center;
-  gap:18px;
- }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
 
- .brand img{
-   height:72px;
- }
+.brand img {
+  height: 140px;
+}
 
- .brand-text {
-   font-size: 42px;
-   font-weight: 700;
-   line-height: 1;
-   color: #1B357A;
- }
+.brand-text {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  color: #1B357A;
+}
 
-/*metrics*/
+/* Metrics */
 
 .metrics {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
-  padding: 56px 40px;
+  padding: 56px 0;
   background: linear-gradient(180deg, rgba(16,118,203,0.04) 0%, rgba(105,48,211,0.03) 100%);
   border-top: 1px solid rgba(27, 53, 122, 0.08);
   border-bottom: 1px solid rgba(27, 53, 122, 0.08);
@@ -830,6 +833,14 @@ p {
 @media (max-width: 860px) {
   .metrics {
     grid-template-columns: 1fr;
-    padding: 36px 20px;
+    padding: 36px 0;
+  }
+
+  .brand img {
+    height: 96px;
+  }
+
+  .brand-text {
+    font-size: 30px;
   }
 }
