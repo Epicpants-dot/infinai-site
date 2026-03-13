@@ -1,4 +1,4 @@
-const DEMO_URL = "#"; // Replace with your Telegram demo bot URL
+const DEMO_URL = "https://t.me/Infini_TV_Support_bot";
 
 document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.getElementById("navToggle");
