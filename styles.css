@@ -3,23 +3,23 @@
    ========= */
 
 :root {
-  --navy: #1B357A;
-  --blue: #1076CB;
-  --electric: #4AB9F8;
-  --purple: #6930D3;
-  --soft-purple: #8D85D6;
+  --navy: #21417A;
+  --blue: #1375C3;
+  --electric: #49B4F6;
+  --purple: #6F30D6;
+  --soft-purple: #8B6CE0;
   --bg: #FDFDFD;
-  --ink-soft: #4d5f8f;
-  --line: rgba(27, 53, 122, 0.12);
+  --ink-soft: #4a5f8c;
+  --line: rgba(33, 65, 122, 0.12);
   --panel: #ffffff;
-  --panel-tint: linear-gradient(180deg, rgba(16,118,203,0.06) 0%, rgba(105,48,211,0.05) 100%);
-  --hero-wash: radial-gradient(circle at top right, rgba(74,185,248,0.28), transparent 26%),
-               radial-gradient(circle at left top, rgba(105,48,211,0.12), transparent 22%),
+  --panel-tint: linear-gradient(180deg, rgba(31,159,239,0.06) 0%, rgba(111,48,214,0.05) 100%);
+  --hero-wash: radial-gradient(circle at top right, rgba(73,180,246,0.28), transparent 26%),
+               radial-gradient(circle at left top, rgba(111,48,214,0.12), transparent 22%),
                linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
-  --button-gradient: linear-gradient(135deg, #1076CB 0%, #6930D3 100%);
-  --shadow-lg: 0 24px 80px rgba(27, 53, 122, 0.10);
-  --shadow-md: 0 16px 48px rgba(27, 53, 122, 0.08);
-  --shadow-sm: 0 8px 22px rgba(27, 53, 122, 0.07);
+  --button-gradient: linear-gradient(135deg, #1F9FEF 0%, #6F30D6 100%);
+  --shadow-lg: 0 24px 80px rgba(33, 65, 122, 0.10);
+  --shadow-md: 0 16px 48px rgba(33, 65, 122, 0.08);
+  --shadow-sm: 0 8px 22px rgba(33, 65, 122, 0.07);
   --radius-xl: 28px;
   --radius-lg: 20px;
   --radius-md: 16px;
@@ -71,11 +71,11 @@ a {
   z-index: 40;
   backdrop-filter: blur(10px);
   background: rgba(253, 253, 253, 0.88);
-  border-bottom: 1px solid rgba(27, 53, 122, 0.08);
+  border-bottom: 1px solid rgba(33, 65, 122, 0.08);
 }
 
 .nav-wrap {
-  min-height: 132px;
+  min-height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,7 +83,7 @@ a {
 }
 
 .brand-logo {
-  height: 140px;
+  height: 52px;
   width: auto;
   flex-shrink: 0;
 }
@@ -146,17 +146,17 @@ a {
 .button-primary {
   background: var(--button-gradient);
   color: white;
-  box-shadow: 0 14px 28px rgba(105, 48, 211, 0.18);
+  box-shadow: 0 14px 28px rgba(111, 48, 214, 0.18);
 }
 
 .button-primary:hover {
-  box-shadow: 0 18px 34px rgba(105, 48, 211, 0.24);
+  box-shadow: 0 18px 34px rgba(111, 48, 214, 0.24);
 }
 
 .button-secondary {
   background: white;
   color: var(--navy);
-  border-color: rgba(27, 53, 122, 0.14);
+  border-color: rgba(33, 65, 122, 0.14);
   box-shadow: var(--shadow-sm);
 }
 
@@ -226,6 +226,13 @@ p {
   font-size: 1.06rem;
 }
 
+.gradient-text {
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .hero-subtitle {
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   color: var(--navy);
@@ -252,7 +259,7 @@ p {
   inset: auto -10% -80px auto;
   width: 420px;
   height: 420px;
-  background: radial-gradient(circle, rgba(74,185,248,0.16) 0%, rgba(74,185,248,0) 68%);
+  background: radial-gradient(circle, rgba(73,180,246,0.16) 0%, rgba(73,180,246,0) 68%);
   pointer-events: none;
 }
 
@@ -262,7 +269,7 @@ p {
   grid-template-columns: 1.15fr 0.95fr;
   gap: 42px;
   align-items: center;
-  min-height: calc(100vh - 84px);
+  min-height: calc(100vh - 80px);
   padding: 62px 0 80px;
 }
 
@@ -299,7 +306,7 @@ p {
   height: 12px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--electric), var(--purple));
-  box-shadow: 0 0 0 5px rgba(74,185,248,0.14);
+  box-shadow: 0 0 0 5px rgba(73,180,246,0.14);
 }
 
 /* Panels and cards */
@@ -326,14 +333,14 @@ p {
   background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
   border-radius: 22px;
   overflow: hidden;
-  border: 1px solid rgba(27, 53, 122, 0.08);
+  border: 1px solid rgba(33, 65, 122, 0.08);
 }
 
 .chat-top {
   display: flex;
   gap: 8px;
   padding: 16px 18px;
-  border-bottom: 1px solid rgba(27, 53, 122, 0.08);
+  border-bottom: 1px solid rgba(33, 65, 122, 0.08);
   background: rgba(255,255,255,0.9);
 }
 
@@ -361,13 +368,13 @@ p {
 
 .message.user {
   margin-left: auto;
-  background: linear-gradient(135deg, rgba(16,118,203,0.12), rgba(105,48,211,0.16));
+  background: linear-gradient(135deg, rgba(31,159,239,0.12), rgba(111,48,214,0.16));
   color: var(--navy);
 }
 
 .message.bot {
   background: white;
-  border: 1px solid rgba(27, 53, 122, 0.08);
+  border: 1px solid rgba(33, 65, 122, 0.08);
   color: var(--navy);
 }
 
@@ -440,10 +447,18 @@ p {
 .scenario-card,
 .journey-card {
   background: var(--panel);
-  border: 1px solid rgba(27, 53, 122, 0.08);
+  border: 1px solid rgba(33, 65, 122, 0.08);
   border-radius: var(--radius-lg);
   padding: 28px;
   box-shadow: var(--shadow-sm);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.feature-card:hover,
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(111, 48, 214, 0.18);
 }
 
 .icon-badge {
@@ -454,7 +469,7 @@ p {
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(16,118,203,0.14), rgba(105,48,211,0.18));
+  background: linear-gradient(135deg, rgba(31,159,239,0.14), rgba(111,48,214,0.18));
   color: var(--purple);
   font-weight: 800;
 }
@@ -476,7 +491,7 @@ p {
   position: relative;
   padding: 14px 18px 14px 48px;
   background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(27, 53, 122, 0.08);
+  border: 1px solid rgba(33, 65, 122, 0.08);
   border-radius: 16px;
   color: var(--navy);
   font-weight: 600;
@@ -529,8 +544,8 @@ p {
 }
 
 .trust-strip {
-  border-top: 1px solid rgba(27, 53, 122, 0.06);
-  border-bottom: 1px solid rgba(27, 53, 122, 0.06);
+  border-top: 1px solid rgba(33, 65, 122, 0.06);
+  border-bottom: 1px solid rgba(33, 65, 122, 0.06);
   background: rgba(255,255,255,0.75);
 }
 
@@ -588,7 +603,7 @@ p {
   align-items: center;
   gap: 14px;
   padding: 15px 0;
-  border-top: 1px solid rgba(27, 53, 122, 0.08);
+  border-top: 1px solid rgba(33, 65, 122, 0.08);
   color: var(--navy);
   font-weight: 600;
 }
@@ -604,7 +619,7 @@ p {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(16,118,203,0.14), rgba(105,48,211,0.18));
+  background: linear-gradient(135deg, rgba(31,159,239,0.14), rgba(111,48,214,0.18));
   color: var(--purple);
   font-weight: 800;
 }
@@ -617,7 +632,7 @@ p {
 .timeline-item {
   padding: 22px;
   background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(27, 53, 122, 0.08);
+  border: 1px solid rgba(33, 65, 122, 0.08);
   border-radius: 18px;
 }
 
@@ -629,7 +644,7 @@ p {
 
 .site-footer {
   margin-top: 30px;
-  border-top: 1px solid rgba(27, 53, 122, 0.08);
+  border-top: 1px solid rgba(33, 65, 122, 0.08);
   background: white;
 }
 
@@ -641,7 +656,7 @@ p {
 }
 
 .footer-logo {
-  height: 110px;
+  height: 72px;
   width: auto;
   margin-bottom: 18px;
 }
@@ -716,7 +731,7 @@ p {
     gap: 10px;
     padding: 18px;
     background: rgba(255,255,255,0.98);
-    border: 1px solid rgba(27,53,122,0.08);
+    border: 1px solid rgba(33,65,122,0.08);
     border-radius: 22px;
     box-shadow: var(--shadow-md);
   }
@@ -757,7 +772,7 @@ p {
   }
 
   .nav-wrap {
-    min-height: 74px;
+    min-height: 64px;
   }
 
   h1 {
@@ -783,18 +798,18 @@ p {
 .brand {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
 }
 
 .brand img {
-  height: 140px;
+  height: 52px;
 }
 
 .brand-text {
-  font-size: 42px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1;
-  color: #1B357A;
+  color: var(--navy);
 }
 
 /* Metrics */
@@ -806,9 +821,9 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
   padding: 56px 0;
-  background: linear-gradient(180deg, rgba(16,118,203,0.04) 0%, rgba(105,48,211,0.03) 100%);
-  border-top: 1px solid rgba(27, 53, 122, 0.08);
-  border-bottom: 1px solid rgba(27, 53, 122, 0.08);
+  background: linear-gradient(180deg, rgba(31,159,239,0.04) 0%, rgba(111,48,214,0.03) 100%);
+  border-top: 1px solid rgba(33, 65, 122, 0.08);
+  border-bottom: 1px solid rgba(33, 65, 122, 0.08);
 }
 
 .metric {
@@ -820,14 +835,17 @@ p {
   margin: 0 0 12px;
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   line-height: 1;
-  color: #1B357A;
+  background: var(--button-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .metric p {
   margin: 0 auto;
   max-width: 26ch;
   font-size: 1rem;
-  color: #4d5f8f;
+  color: var(--ink-soft);
 }
 
 @media (max-width: 860px) {
@@ -837,10 +855,10 @@ p {
   }
 
   .brand img {
-    height: 96px;
+    height: 44px;
   }
 
   .brand-text {
-    font-size: 30px;
+    font-size: 18px;
   }
 }
