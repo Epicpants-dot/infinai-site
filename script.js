@@ -8,4 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle.setAttribute("aria-expanded", String(isOpen));
     });
   }
+
+  document.querySelectorAll(".js-open-buddy").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      const launcher = document.getElementById("infinai-launcher");
+      if (launcher) launcher.click();
+    });
+  });
 });
