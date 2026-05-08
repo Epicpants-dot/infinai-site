@@ -108,7 +108,7 @@ a {
   display: none;
   width: 46px;
   height: 46px;
-  border: 1px solid var(--line);
+  border: 1.5px solid rgba(33, 65, 122, 0.28);
   background: #fff;
   border-radius: 14px;
   padding: 10px;
@@ -119,7 +119,7 @@ a {
   display: block;
   height: 2px;
   width: 100%;
-  margin: 6px 0;
+  margin: 3px 0;
   background: var(--navy);
   border-radius: 99px;
 }
