@@ -1,6 +1,6 @@
 const VERCEL_ORIGIN = "https://website-agent-pi.vercel.app";
 const PROXY_PATHS = ["/embed.js", "/embed.css", "/infinai-logo.png"];
-const PROXY_PREFIXES = ["/embed", "/api/chat/message"];
+const PROXY_PREFIXES = ["/embed", "/api/chat/message", "/_next"];
 
 export async function onRequest(context) {
   const url = new URL(context.request.url);
