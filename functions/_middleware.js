@@ -25,5 +25,6 @@ export async function onRequest(context) {
       context.request.method !== "GET" && context.request.method !== "HEAD"
         ? context.request.body
         : undefined,
+    redirect: "manual",
   });
 }
