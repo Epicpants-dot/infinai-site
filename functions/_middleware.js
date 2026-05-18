@@ -15,12 +15,16 @@ export async function onRequest(context) {
   if (!shouldProxy) return context.next();
 
   const target = new URL(context.request.url);
+  const originalHost = target.hostname;
   target.hostname = "website-agent-pi.vercel.app";
   target.protocol = "https:";
 
+  const proxyHeaders = new Headers(context.request.headers);
+  proxyHeaders.set("x-forwarded-host", originalHost);
+
   return fetch(target.toString(), {
     method: context.request.method,
-    headers: context.request.headers,
+    headers: proxyHeaders,
     body:
       context.request.method !== "GET" && context.request.method !== "HEAD"
         ? context.request.body
