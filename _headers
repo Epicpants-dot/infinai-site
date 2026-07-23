@@ -1,11 +1,17 @@
-# Maintenance-mode CSP, 18 July 2026 (DR-001 shutdown) — matches the policy
-# the middleware itself sets on the maintenance response, so the two can't
-# conflict regardless of how Cloudflare layers _headers over Function
-# responses. The live-site CSP (commented below) is untouched otherwise —
-# restore it, and drop this block, when maintenance mode ends.
-# Original: default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-src 'self'; connect-src 'self'; frame-ancestors 'none'
+# EXP-001 landing-page CSP, 23 July 2026 (see functions/_middleware.js,
+# SITE_MODE = "exp001-landing"). Matches what the page actually needs:
+# same-origin styles/media/scripts, plus the Cloudflare Web Analytics
+# beacon domain. No frames, no forms posting off-site.
+#
+# Original live-site CSP (commented below) — restore this, and drop this
+# block, when SITE_MODE is switched back to "live-site":
+# Content-Security-Policy: default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self'; frame-src 'self'; connect-src 'self'; frame-ancestors 'none'
+#
+# Maintenance-mode CSP (used when SITE_MODE = "maintenance"), also set
+# directly by the middleware response itself so the two can't conflict:
+# Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'
 /*
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; form-action 'self'; frame-src 'none'; frame-ancestors 'none'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
