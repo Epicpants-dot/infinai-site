@@ -39,6 +39,20 @@ const PROXY_PREFIXES = ["/embed", "/api/chat/message", "/api/admin", "/_next", "
 // landing page itself needs to render and submit.
 const EXP001_STATIC_PATHS = ["/assets/buddy-promo.mp4", "/assets/Infin_AI_Purple.png"];
 
+// _headers file rules only apply to responses served by Cloudflare Pages'
+// own static-asset layer — NOT to Response objects a Function builds and
+// returns directly (confirmed live, 26 July 2026: the landing page and the
+// 404 response were shipping with zero security headers despite _headers
+// declaring a CSP). Applied here explicitly so Function-authored responses
+// get the same protection as static assets. Keep in sync with _headers.
+const EXP001_SECURITY_HEADERS = {
+  "content-security-policy":
+    "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; form-action 'self'; frame-src 'none'; frame-ancestors 'none'",
+  "x-frame-options": "DENY",
+  "x-content-type-options": "nosniff",
+  "referrer-policy": "strict-origin-when-cross-origin",
+};
+
 function proxyToVercel(context) {
   const target = new URL(context.request.url);
   const originalHost = target.hostname;
@@ -62,7 +76,11 @@ function proxyToVercel(context) {
 function notFound() {
   return new Response("Not found.", {
     status: 404,
-    headers: { "content-type": "text/plain; charset=utf-8", "x-robots-tag": "noindex" },
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "x-robots-tag": "noindex",
+      ...EXP001_SECURITY_HEADERS,
+    },
   });
 }
 
@@ -105,7 +123,11 @@ export async function onRequest(context) {
     });
     return new Response(html, {
       status: 200,
-      headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        ...EXP001_SECURITY_HEADERS,
+      },
     });
   }
 

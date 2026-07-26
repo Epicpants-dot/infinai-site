@@ -18,8 +18,16 @@
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// _headers file rules don't apply to Function-authored responses (see
+// functions/_middleware.js) — set explicitly here too, kept in sync.
+const SECURITY_HEADERS = {
+  "x-frame-options": "DENY",
+  "x-content-type-options": "nosniff",
+  "referrer-policy": "strict-origin-when-cross-origin",
+};
+
 function redirect(location) {
-  return new Response(null, { status: 303, headers: { location } });
+  return new Response(null, { status: 303, headers: { location, ...SECURITY_HEADERS } });
 }
 
 export async function onRequestPost(context) {
@@ -66,5 +74,5 @@ export async function onRequest(context) {
   if (context.request.method === "POST") {
     return onRequestPost(context);
   }
-  return new Response("Not found.", { status: 404 });
+  return new Response("Not found.", { status: 404, headers: SECURITY_HEADERS });
 }
