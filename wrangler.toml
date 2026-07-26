@@ -1,0 +1,21 @@
+# Cloudflare Pages project config for infinai-site. Previously undeclared —
+# bindings were configured through the dashboard only. Added for EXP-001
+# (Job 5) so the KV connection is documented in the repo rather than a
+# dashboard setting nobody can see from the code. Read automatically by
+# Cloudflare Pages on both git-triggered builds and `wrangler pages deploy`.
+name = "infinai-site"
+pages_build_output_dir = "."
+compatibility_date = "2026-07-23"
+
+# EXP-001 sign-up capture (functions/api/signup.js). Namespace created
+# 26 July 2026, id d94d9b63c2c74276a595121cda9b85d2. Same namespace used
+# for both environments — this is a small, capped experiment, not worth a
+# second namespace just to separate preview from production.
+[[kv_namespaces]]
+binding = "EXP001_SIGNUPS"
+id = "d94d9b63c2c74276a595121cda9b85d2"
+
+[env.preview]
+[[env.preview.kv_namespaces]]
+binding = "EXP001_SIGNUPS"
+id = "d94d9b63c2c74276a595121cda9b85d2"
