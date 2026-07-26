@@ -233,12 +233,8 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     </footer>
   </div>
   <!-- Cloudflare Web Analytics — cookieless, no consent banner required.
-       PRE-DEPLOY ACTION: replace REPLACE_WITH_REAL_BEACON_TOKEN with the
-       real token from the Cloudflare Pages dashboard (Analytics > Web
-       Analytics > enable for infinai.uk) before this ships. Left as a
-       placeholder rather than fabricated, since it needs a dashboard step
-       only Jason or CC-with-dashboard-access can do. -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "REPLACE_WITH_REAL_BEACON_TOKEN"}'></script>
+       Token from the infinai.uk Web Analytics site added 26 July 2026. -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "fc3cea840190469eb3d9141367a7e74e"}'></script>
 </body>
 </html>`;
 }
