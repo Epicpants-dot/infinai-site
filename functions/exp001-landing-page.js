@@ -95,10 +95,13 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     line-height: 1.6;
   }
   .wrap { max-width: 480px; margin: 0 auto; padding: 28px 20px 64px; }
-  header { text-align: center; margin-bottom: 18px; }
-  .brand { display: inline-flex; align-items: center; gap: 10px; }
-  .brand-logo { height: 40px; width: auto; display: block; }
-  .brand-text { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+  header { text-align: center; margin-bottom: 20px; }
+  .brand { display: inline-flex; align-items: center; gap: 14px; }
+  /* Sized up from the first pass (40px) — the brief called the logo
+     "barely visible"; this is meant to read as a confident brand mark,
+     not a favicon next to the wordmark. */
+  .brand-logo { height: 88px; width: auto; display: block; }
+  .brand-text { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.01em; }
   h1 {
     text-align: center;
     font-size: 1.55rem;
