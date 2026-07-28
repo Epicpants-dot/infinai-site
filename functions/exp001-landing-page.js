@@ -12,11 +12,17 @@
 // Embedded at a constrained width so it also reads cleanly on desktop
 // rather than stretching edge to edge.
 //
-// Visual pass, 28 July 2026 (Buddy brief — first-impression fix): hero
-// reordered so headline/value/sign-up sit above the fold and the video
-// supports the CTA instead of blocking it; logo added (asset already
-// allow-listed in _middleware.js, just never referenced here before).
-// No new assets, fonts, or external requests introduced — CSP unchanged.
+// Visual pass, 28 July 2026 (Buddy brief — first-impression fix): logo
+// added (asset already allow-listed in _middleware.js, just never
+// referenced here before). No new assets, fonts, or external requests
+// introduced — CSP unchanged.
+//
+// Copy/order pass, 28 July 2026 (Buddy brief — cold-traffic order):
+// deliberately reverses the sign-up form back below the video. Cold
+// trade visitors have never heard of InfinAI or a "website agent" —
+// explain, prove with the video, then ask. Do not move the form back
+// above the fold without a new instruction; this is intentional, not
+// a regression of the first pass.
 
 function escapeAttr(value) {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -53,8 +59,8 @@ function renderForm(state, prefillEmail) {
         </div>
         ${errorNote}
         <p class="privacy-note">
-          InfinAI-UK will only use your email to let you know when early access opens —
-          nothing else, no marketing list. Email
+          InfinAI-UK will only use your email to tell you when early access opens.
+          Nothing else, no marketing list. Email
           <a href="mailto:hello@infinai.uk">hello@infinai.uk</a> any time to be removed.
         </p>
       </form>
@@ -107,28 +113,21 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     font-size: 1.55rem;
     font-weight: 800;
     line-height: 1.3;
-    margin: 6px 0 10px;
+    margin: 6px 0 20px;
     letter-spacing: -0.01em;
-  }
-  .subhead {
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 0 0 24px;
   }
   .video-label {
     text-align: center;
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--navy);
-    margin: 8px 0 12px;
+    margin: 4px 0 12px;
   }
   .video-shell {
     position: relative;
     width: 100%;
     max-width: 270px;
-    margin: 0 auto;
+    margin: 0 auto 28px;
     aspect-ratio: 9 / 16;
     border-radius: 24px;
     overflow: hidden;
@@ -146,7 +145,7 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 24px 22px;
-    margin: 32px 0 24px;
+    margin: 0 0 28px;
   }
   .pain-promise p { margin: 0 0 12px; color: var(--ink-soft); font-size: 0.98rem; }
   .pain-promise p:last-child { margin-bottom: 0; }
@@ -174,7 +173,7 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
   }
   .price-anchor {
     text-align: center;
-    margin-bottom: 8px;
+    margin: 28px 0 8px;
   }
   .price-anchor .price {
     font-size: 2rem;
@@ -190,6 +189,20 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     color: var(--ink-soft);
     margin-top: 4px;
   }
+  .offer-heading {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0 0 8px;
+  }
+  .offer-body {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 20px;
+  }
   .form-card {
     background: #fff;
     border: 1px solid var(--line);
@@ -197,7 +210,6 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     padding: 24px 22px;
     box-shadow: 0 16px 48px rgba(33, 65, 122, 0.08);
   }
-  .form-card + .video-label { margin-top: 32px; }
   .form-card h2 { margin: 0 0 8px; font-size: 1.15rem; }
   .form-card label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
   .form-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -264,9 +276,18 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     </header>
 
     <h1>Missed calls become missed jobs. Buddy answers instead.</h1>
-    <p class="subhead">Your website agent answers out-of-hours enquiries instantly and emails you a qualified lead — early access from £49/month, first 10 trade businesses.</p>
 
-    ${renderForm(formState, prefillEmail)}
+    <div class="pain-promise">
+      <p>Every missed call out of hours is a job that goes to someone else. Evenings, weekends, mid-callout: the enquiries don't stop but you can't always answer.</p>
+      <p>Buddy is your website agent from InfinAI. It gets to know your business, how you work, what a good job looks like and the questions worth asking, then answers your enquiries instantly, qualifies them and emails you a lead ready to call. You get back to a real enquiry, not a voicemail.</p>
+      <ul class="how-it-works">
+        <li>An agent that knows your business, how you operate and what you need</li>
+        <li>Answers instantly, no more voicemail</li>
+        <li>Asks the right questions to qualify every enquiry</li>
+        <li>Emails you a ready-to-call lead</li>
+        <li>Set up for you, no faff, works with the website you already have</li>
+      </ul>
+    </div>
 
     <p class="video-label">See Buddy answer a real enquiry ↓</p>
     <div class="video-shell">
@@ -275,19 +296,14 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
       </video>
     </div>
 
-    <div class="pain-promise">
-      <p><strong>Every missed call out of hours is a job that goes to someone else.</strong> Evenings, weekends, mid-callout — the enquiries don't stop, but you can't always answer.</p>
-      <p><strong>Buddy — your website agent, from InfinAI</strong> — answers instantly, asks the right questions, and sends you a qualified lead by email. You get back to a real enquiry, not a voicemail.</p>
-      <ul class="how-it-works">
-        <li>Answers instantly — no more voicemail</li>
-        <li>Asks the right questions to qualify the enquiry</li>
-        <li>Emails you a ready-to-call lead</li>
-      </ul>
-    </div>
+    <h2 class="offer-heading">Get early access, founding 10</h2>
+    <p class="offer-body">Be one of our first 10 trade businesses and we'll waive your £190 setup fee, on the monthly plan, no contract. We'll email you the moment it opens.</p>
+
+    ${renderForm(formState, prefillEmail)}
 
     <div class="price-anchor">
       <span class="price">From £49/month</span>
-      <span class="price-note">Early access — first 10 trade businesses</span>
+      <span class="price-note">Early access for our first 10 trade businesses</span>
     </div>
 
     <footer>
