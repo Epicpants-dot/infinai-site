@@ -11,6 +11,12 @@
 // promo was shot vertical for phone-scrolled Facebook-group distribution.
 // Embedded at a constrained width so it also reads cleanly on desktop
 // rather than stretching edge to edge.
+//
+// Visual pass, 28 July 2026 (Buddy brief — first-impression fix): hero
+// reordered so headline/value/sign-up sit above the fold and the video
+// supports the CTA instead of blocking it; logo added (asset already
+// allow-listed in _middleware.js, just never referenced here before).
+// No new assets, fonts, or external requests introduced — CSP unchanged.
 
 function escapeAttr(value) {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -78,27 +84,48 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
-    background: var(--bg);
+    /* Restrained gradient (existing brand tokens, no new asset) so wide
+       viewports don't read as flat dead space either side of the column —
+       the "thrown together" complaint was worst here, not on mobile. */
+    background:
+      radial-gradient(ellipse 900px 500px at 50% 0%, rgba(111, 48, 214, 0.07), transparent 65%),
+      linear-gradient(180deg, #F4F2FB 0%, var(--bg) 420px);
     color: var(--navy);
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     line-height: 1.6;
   }
-  .wrap { max-width: 480px; margin: 0 auto; padding: 32px 20px 64px; }
-  header { text-align: center; margin-bottom: 24px; }
-  .brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 28px 20px 64px; }
+  header { text-align: center; margin-bottom: 18px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; }
+  .brand-logo { height: 40px; width: auto; display: block; }
+  .brand-text { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
   h1 {
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 800;
     line-height: 1.3;
-    margin: 8px 0 28px;
+    margin: 6px 0 10px;
     letter-spacing: -0.01em;
+  }
+  .subhead {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 24px;
+  }
+  .video-label {
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 8px 0 12px;
   }
   .video-shell {
     position: relative;
     width: 100%;
-    max-width: 320px;
-    margin: 0 auto 28px;
+    max-width: 270px;
+    margin: 0 auto;
     aspect-ratio: 9 / 16;
     border-radius: 24px;
     overflow: hidden;
@@ -116,14 +143,35 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 24px 22px;
-    margin-bottom: 24px;
+    margin: 32px 0 24px;
   }
   .pain-promise p { margin: 0 0 12px; color: var(--ink-soft); font-size: 0.98rem; }
   .pain-promise p:last-child { margin-bottom: 0; }
   .pain-promise strong { color: var(--navy); }
+  .how-it-works {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 14px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  .how-it-works li {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .how-it-works li:last-child { margin-bottom: 0; }
+  .how-it-works li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 700;
+  }
   .price-anchor {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 8px;
   }
   .price-anchor .price {
     font-size: 2rem;
@@ -146,6 +194,7 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     padding: 24px 22px;
     box-shadow: 0 16px 48px rgba(33, 65, 122, 0.08);
   }
+  .form-card + .video-label { margin-top: 32px; }
   .form-card h2 { margin: 0 0 8px; font-size: 1.15rem; }
   .form-card label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
   .form-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -205,11 +254,18 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">InfinAI</div>
+      <div class="brand">
+        <img src="/assets/Infin_AI_Purple.png" alt="InfinAI logo" class="brand-logo" />
+        <span class="brand-text">InfinAI</span>
+      </div>
     </header>
 
     <h1>Missed calls become missed jobs. Buddy answers instead.</h1>
+    <p class="subhead">Your website agent answers out-of-hours enquiries instantly and emails you a qualified lead — early access from £49/month, first 10 trade businesses.</p>
 
+    ${renderForm(formState, prefillEmail)}
+
+    <p class="video-label">See Buddy answer a real enquiry ↓</p>
     <div class="video-shell">
       <video controls playsinline preload="metadata" aria-label="Buddy demo — a boiler breakdown enquiry, answered and turned into a qualified lead">
         <source src="/assets/buddy-promo.mp4" type="video/mp4" />
@@ -219,14 +275,17 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     <div class="pain-promise">
       <p><strong>Every missed call out of hours is a job that goes to someone else.</strong> Evenings, weekends, mid-callout — the enquiries don't stop, but you can't always answer.</p>
       <p><strong>Buddy — your website agent, from InfinAI</strong> — answers instantly, asks the right questions, and sends you a qualified lead by email. You get back to a real enquiry, not a voicemail.</p>
+      <ul class="how-it-works">
+        <li>Answers instantly — no more voicemail</li>
+        <li>Asks the right questions to qualify the enquiry</li>
+        <li>Emails you a ready-to-call lead</li>
+      </ul>
     </div>
 
     <div class="price-anchor">
       <span class="price">From £49/month</span>
       <span class="price-note">Early access — first 10 trade businesses</span>
     </div>
-
-    ${renderForm(formState, prefillEmail)}
 
     <footer>
       InfinAI-UK &middot; <a href="mailto:hello@infinai.uk">hello@infinai.uk</a>
