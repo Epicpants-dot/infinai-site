@@ -23,6 +23,13 @@
 // explain, prove with the video, then ask. Do not move the form back
 // above the fold without a new instruction; this is intentional, not
 // a regression of the first pass.
+//
+// Logo + reorder pass, 30 July 2026 (Buddy brief — supersedes the
+// previous order): transparent logo (Infin_AI_UK_Purple_noBG2.png,
+// cropped from Jason's source file to trim built-in transparent
+// padding — see the commit for the crop rationale), wordmark text
+// dropped, video now sandwiched between the explainer block and the
+// bullets. This order is the current source of truth.
 
 function escapeAttr(value) {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -101,13 +108,13 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     line-height: 1.6;
   }
   .wrap { max-width: 480px; margin: 0 auto; padding: 28px 20px 64px; }
-  header { text-align: center; margin-bottom: 20px; }
-  .brand { display: inline-flex; align-items: center; gap: 14px; }
-  /* Sized up from the first pass (40px) — the brief called the logo
-     "barely visible"; this is meant to read as a confident brand mark,
-     not a favicon next to the wordmark. */
-  .brand-logo { height: 88px; width: auto; display: block; }
-  .brand-text { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.01em; }
+  header { text-align: center; margin-bottom: 22px; }
+  /* Logo stands alone now (wordmark text dropped) — sized bigger again
+     since it's the only brand element up top and needs to carry that on
+     its own. Source PNG is pre-cropped to its visible content, so this
+     height maps directly to the mark rather than including dead
+     transparent padding. */
+  .brand-logo { height: 128px; width: auto; }
   h1 {
     text-align: center;
     font-size: 1.55rem;
@@ -150,11 +157,12 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
   .pain-promise p { margin: 0 0 12px; color: var(--ink-soft); font-size: 0.98rem; }
   .pain-promise p:last-child { margin-bottom: 0; }
   .pain-promise strong { color: var(--navy); }
+  /* Standalone card now (moved below the video) — no longer follows
+     paragraphs in the same card, so no divider needed above it. */
   .how-it-works {
     list-style: none;
-    margin: 16px 0 0;
-    padding: 14px 0 0;
-    border-top: 1px solid var(--line);
+    margin: 0;
+    padding: 0;
   }
   .how-it-works li {
     color: var(--ink-soft);
@@ -269,10 +277,7 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">
-        <img src="/assets/Infin_AI_Purple.png" alt="InfinAI logo" class="brand-logo" />
-        <span class="brand-text">InfinAI</span>
-      </div>
+      <img src="/assets/Infin_AI_UK_Purple_noBG2.png" alt="InfinAI" class="brand-logo" />
     </header>
 
     <h1>Missed calls become missed jobs. Buddy answers instead.</h1>
@@ -280,13 +285,6 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     <div class="pain-promise">
       <p>Every missed call out of hours is a job that goes to someone else. Evenings, weekends, mid-callout: the enquiries don't stop but you can't always answer.</p>
       <p>Buddy is your website agent from InfinAI. It gets to know your business, how you work, what a good job looks like and the questions worth asking, then answers your enquiries instantly, qualifies them and emails you a lead ready to call. You get back to a real enquiry, not a voicemail.</p>
-      <ul class="how-it-works">
-        <li>An agent that knows your business, how you operate and what you need</li>
-        <li>Answers instantly, no more voicemail</li>
-        <li>Asks the right questions to qualify every enquiry</li>
-        <li>Emails you a ready-to-call lead</li>
-        <li>Set up for you, no faff, works with the website you already have</li>
-      </ul>
     </div>
 
     <p class="video-label">See Buddy answer a real enquiry ↓</p>
@@ -294,6 +292,16 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
       <video controls playsinline preload="metadata" aria-label="Buddy demo — a boiler breakdown enquiry, answered and turned into a qualified lead">
         <source src="/assets/buddy-promo.mp4" type="video/mp4" />
       </video>
+    </div>
+
+    <div class="pain-promise">
+      <ul class="how-it-works">
+        <li>An agent that knows your business, how you operate and what you need</li>
+        <li>Answers instantly, no more voicemail</li>
+        <li>Asks the right questions to qualify every enquiry</li>
+        <li>Emails you a ready-to-call lead</li>
+        <li>Set up for you, no faff, works with the website you already have</li>
+      </ul>
     </div>
 
     <h2 class="offer-heading">Get early access, founding 10</h2>
