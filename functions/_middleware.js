@@ -7,9 +7,12 @@ import { renderLandingPage } from "./exp001-landing-page.js";
 //
 //   "exp001-landing" (current) — EXP-001 demand-test landing page (hub:
 //     docs/experiments/EXP-001-trades-demand-test.md). Root serves the
-//     landing page; /assets/buddy-promo.mp4 and /assets/Infin_AI_Purple.png
-//     serve as static files (video + logo used by the page); POST
-//     /api/signup writes an email to KV (functions/api/signup.js).
+//     landing page; /assets/buddy-promo.mp4 and
+//     /assets/Infin_AI_UK_Purple_noBG2.png serve as static files (video +
+//     transparent logo used by the page, added 30 July 2026 — the old
+//     /assets/Infin_AI_Purple.png stays allow-listed below but is no
+//     longer referenced by the template); POST /api/signup writes an
+//     email to KV (functions/api/signup.js).
 //     Everything else 404s — no chat widget, no agent, no proxy to Vercel.
 //     Roll back to this by re-setting SITE_MODE = "exp001-landing" and
 //     redeploying; the landing page and signup function are untouched code,
@@ -37,7 +40,11 @@ const PROXY_PREFIXES = ["/embed", "/api/chat/message", "/api/admin", "/_next", "
 
 // Paths exempt from the EXP-001 "everything else 404s" rule — only what the
 // landing page itself needs to render and submit.
-const EXP001_STATIC_PATHS = ["/assets/buddy-promo.mp4", "/assets/Infin_AI_Purple.png"];
+const EXP001_STATIC_PATHS = [
+  "/assets/buddy-promo.mp4",
+  "/assets/Infin_AI_Purple.png",
+  "/assets/Infin_AI_UK_Purple_noBG2.png",
+];
 
 // _headers file rules only apply to responses served by Cloudflare Pages'
 // own static-asset layer — NOT to Response objects a Function builds and

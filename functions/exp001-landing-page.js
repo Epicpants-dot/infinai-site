@@ -11,6 +11,25 @@
 // promo was shot vertical for phone-scrolled Facebook-group distribution.
 // Embedded at a constrained width so it also reads cleanly on desktop
 // rather than stretching edge to edge.
+//
+// Visual pass, 28 July 2026 (Buddy brief — first-impression fix): logo
+// added (asset already allow-listed in _middleware.js, just never
+// referenced here before). No new assets, fonts, or external requests
+// introduced — CSP unchanged.
+//
+// Copy/order pass, 28 July 2026 (Buddy brief — cold-traffic order):
+// deliberately reverses the sign-up form back below the video. Cold
+// trade visitors have never heard of InfinAI or a "website agent" —
+// explain, prove with the video, then ask. Do not move the form back
+// above the fold without a new instruction; this is intentional, not
+// a regression of the first pass.
+//
+// Logo + reorder pass, 30 July 2026 (Buddy brief — supersedes the
+// previous order): transparent logo (Infin_AI_UK_Purple_noBG2.png,
+// cropped from Jason's source file to trim built-in transparent
+// padding — see the commit for the crop rationale), wordmark text
+// dropped, video now sandwiched between the explainer block and the
+// bullets. This order is the current source of truth.
 
 function escapeAttr(value) {
   return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -47,8 +66,8 @@ function renderForm(state, prefillEmail) {
         </div>
         ${errorNote}
         <p class="privacy-note">
-          InfinAI-UK will only use your email to let you know when early access opens —
-          nothing else, no marketing list. Email
+          InfinAI-UK will only use your email to tell you when early access opens.
+          Nothing else, no marketing list. Email
           <a href="mailto:hello@infinai.uk">hello@infinai.uk</a> any time to be removed.
         </p>
       </form>
@@ -78,26 +97,43 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
-    background: var(--bg);
+    /* Restrained gradient (existing brand tokens, no new asset) so wide
+       viewports don't read as flat dead space either side of the column —
+       the "thrown together" complaint was worst here, not on mobile. */
+    background:
+      radial-gradient(ellipse 900px 500px at 50% 0%, rgba(111, 48, 214, 0.07), transparent 65%),
+      linear-gradient(180deg, #F4F2FB 0%, var(--bg) 420px);
     color: var(--navy);
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
     line-height: 1.6;
   }
-  .wrap { max-width: 480px; margin: 0 auto; padding: 32px 20px 64px; }
-  header { text-align: center; margin-bottom: 24px; }
-  .brand { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 28px 20px 64px; }
+  header { text-align: center; margin-bottom: 22px; }
+  /* Logo stands alone now (wordmark text dropped) — sized bigger again
+     since it's the only brand element up top and needs to carry that on
+     its own. Source PNG is pre-cropped to its visible content, so this
+     height maps directly to the mark rather than including dead
+     transparent padding. */
+  .brand-logo { height: 128px; width: auto; }
   h1 {
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 800;
     line-height: 1.3;
-    margin: 8px 0 28px;
+    margin: 6px 0 20px;
     letter-spacing: -0.01em;
+  }
+  .video-label {
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 4px 0 12px;
   }
   .video-shell {
     position: relative;
     width: 100%;
-    max-width: 320px;
+    max-width: 270px;
     margin: 0 auto 28px;
     aspect-ratio: 9 / 16;
     border-radius: 24px;
@@ -116,14 +152,36 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 24px 22px;
-    margin-bottom: 24px;
+    margin: 0 0 28px;
   }
   .pain-promise p { margin: 0 0 12px; color: var(--ink-soft); font-size: 0.98rem; }
   .pain-promise p:last-child { margin-bottom: 0; }
   .pain-promise strong { color: var(--navy); }
+  /* Standalone card now (moved below the video) — no longer follows
+     paragraphs in the same card, so no divider needed above it. */
+  .how-it-works {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .how-it-works li {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .how-it-works li:last-child { margin-bottom: 0; }
+  .how-it-works li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-weight: 700;
+  }
   .price-anchor {
     text-align: center;
-    margin-bottom: 28px;
+    margin: 28px 0 8px;
   }
   .price-anchor .price {
     font-size: 2rem;
@@ -138,6 +196,20 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     font-size: 0.85rem;
     color: var(--ink-soft);
     margin-top: 4px;
+  }
+  .offer-heading {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0 0 8px;
+  }
+  .offer-body {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 20px;
   }
   .form-card {
     background: #fff;
@@ -205,11 +277,17 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">InfinAI</div>
+      <img src="/assets/Infin_AI_UK_Purple_noBG2.png" alt="InfinAI" class="brand-logo" />
     </header>
 
     <h1>Missed calls become missed jobs. Buddy answers instead.</h1>
 
+    <div class="pain-promise">
+      <p>Every missed call out of hours is a job that goes to someone else. Evenings, weekends, mid-callout: the enquiries don't stop but you can't always answer.</p>
+      <p>Buddy is your website agent from InfinAI. It gets to know your business, how you work, what a good job looks like and the questions worth asking, then answers your enquiries instantly, qualifies them and emails you a lead ready to call. You get back to a real enquiry, not a voicemail.</p>
+    </div>
+
+    <p class="video-label">See Buddy answer a real enquiry ↓</p>
     <div class="video-shell">
       <video controls playsinline preload="metadata" aria-label="Buddy demo — a boiler breakdown enquiry, answered and turned into a qualified lead">
         <source src="/assets/buddy-promo.mp4" type="video/mp4" />
@@ -217,16 +295,24 @@ export function renderLandingPage({ formState, prefillEmail } = {}) {
     </div>
 
     <div class="pain-promise">
-      <p><strong>Every missed call out of hours is a job that goes to someone else.</strong> Evenings, weekends, mid-callout — the enquiries don't stop, but you can't always answer.</p>
-      <p><strong>Buddy — your website agent, from InfinAI</strong> — answers instantly, asks the right questions, and sends you a qualified lead by email. You get back to a real enquiry, not a voicemail.</p>
+      <ul class="how-it-works">
+        <li>An agent that knows your business, how you operate and what you need</li>
+        <li>Answers instantly, no more voicemail</li>
+        <li>Asks the right questions to qualify every enquiry</li>
+        <li>Emails you a ready-to-call lead</li>
+        <li>Set up for you, no faff, works with the website you already have</li>
+      </ul>
     </div>
+
+    <h2 class="offer-heading">Get early access, founding 10</h2>
+    <p class="offer-body">Be one of our first 10 trade businesses and we'll waive your £190 setup fee, on the monthly plan, no contract. We'll email you the moment it opens.</p>
+
+    ${renderForm(formState, prefillEmail)}
 
     <div class="price-anchor">
       <span class="price">From £49/month</span>
-      <span class="price-note">Early access — first 10 trade businesses</span>
+      <span class="price-note">Early access for our first 10 trade businesses</span>
     </div>
-
-    ${renderForm(formState, prefillEmail)}
 
     <footer>
       InfinAI-UK &middot; <a href="mailto:hello@infinai.uk">hello@infinai.uk</a>
