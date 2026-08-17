@@ -5,23 +5,25 @@ import { renderLandingPage } from "./exp001-landing-page.js";
 // SITE_MODE and redeploy; nothing else in this file needs touching to move
 // between them.
 //
-//   "exp001-landing" (current) — EXP-001 demand-test landing page (hub:
-//     docs/experiments/EXP-001-trades-demand-test.md). Root serves the
-//     landing page; /assets/buddy-promo.mp4 and
-//     /assets/Infin_AI_UK_Purple_noBG2.png serve as static files (video +
-//     transparent logo used by the page, added 30 July 2026 — the old
-//     /assets/Infin_AI_Purple.png stays allow-listed below but is no
-//     longer referenced by the template); POST /api/signup writes an
-//     email to KV (functions/api/signup.js).
+//   "exp001-landing" — EXP-001 demand-test landing page (hub:
+//     Archive/phase-one/experiments/EXP-001-trades-demand-test.md — EXP-001
+//     closed 17 August 2026, DR-002). Root serves the landing page;
+//     /assets/buddy-promo.mp4 and /assets/Infin_AI_UK_Purple_noBG2.png
+//     serve as static files (video + transparent logo used by the page,
+//     added 30 July 2026 — the old /assets/Infin_AI_Purple.png stays
+//     allow-listed below but is no longer referenced by the template);
+//     POST /api/signup writes an email to KV (functions/api/signup.js).
 //     Everything else 404s — no chat widget, no agent, no proxy to Vercel.
 //     Roll back to this by re-setting SITE_MODE = "exp001-landing" and
 //     redeploying; the landing page and signup function are untouched code,
-//     not deleted, when another mode is active.
+//     not deleted, when another mode is active. The final live state before
+//     this switch is tagged archive/exp001-landing-final.
 //
-//   "maintenance" — the 18 July 2026 Website Agent shutdown holding page
-//     (DR-001). Blanket 503 for every request, no proxy. This is the
-//     pre-EXP-001 state; revert to it if EXP-001 needs to be pulled without
-//     yet deciding what replaces it.
+//   "maintenance" (current) — the 18 July 2026 Website Agent shutdown
+//     holding page (DR-001). Blanket 503 for every request, no proxy.
+//     Restored 17 August 2026 (DR-002 — EXP-001 closed, phase-one reset)
+//     after EXP-001's run; revert to it again if a future live mode needs
+//     to be pulled without yet deciding what replaces it.
 //
 //   "live-site" — original marketing site (index.html, buddy.html,
 //     privacy.html — untouched in git throughout). Proxy to the Vercel
@@ -32,7 +34,7 @@ import { renderLandingPage } from "./exp001-landing-page.js";
 //     stays empty until a separate, explicit decision reopens it. Use this
 //     mode once agents are eventually revived, or to restore the original
 //     site for any other reason.
-const SITE_MODE = "exp001-landing";
+const SITE_MODE = "maintenance";
 
 const VERCEL_ORIGIN = "https://website-agent-pi.vercel.app";
 const PROXY_PATHS = ["/embed.js", "/embed.css", "/infinai-logo.png"];
