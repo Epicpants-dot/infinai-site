@@ -1,1 +1,18 @@
+# Secrets: never commit env or credential files (EPI-27, 4 November 2026).
+# Same pattern as website-agent: ignore every .env variant, keep the template,
+# which holds placeholder names only.
+.env*
+!.env.example
+# Cloudflare Wrangler's local secrets file (its version of .env).
+.dev.vars*
+# Private keys and certificate bundles.
+*.pem
+*.key
+*.p12
+*.pfx
+# Cloud credential and service-account files.
+*credentials*.json
+*service-account*.json
+
+# Wrangler's local build output.
 .wrangler/
